@@ -8,7 +8,11 @@ export default defineNuxtConfig({
     ],
 
     devtools: {
-        enabled: true
+        enabled: true,
+
+        timeline: {
+            enabled: true
+        }
     },
 
     css: ['~/assets/css/main.css'],
@@ -56,6 +60,12 @@ export default defineNuxtConfig({
                 commaDangle: 'never',
                 braceStyle: '1tbs'
             }
+        }
+    },
+
+    icon: {
+        clientBundle: {
+            scan: true
         }
     }
 });

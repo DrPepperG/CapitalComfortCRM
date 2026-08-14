@@ -11,7 +11,7 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.122",
+    "@iconify-json/lucide": "^1.2.123",
     "@iconify-json/simple-icons": "^1.2.93",
     "@nuxt/a11y": "1.0.0-alpha.1",
     "@nuxt/image": "2.1.0",
@@ -31,6 +31,6 @@
     "typescript": "^6.0.3",
     "vue-tsc": "^3.3.9"
   },
-  "packageManager": "pnpm@11.20.0",
+  "packageManager": "yarn@1.22.19",
   "version": "0.0.0"
 }
