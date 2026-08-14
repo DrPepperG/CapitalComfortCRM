@@ -1,30 +1,61 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/ui',
-    '@nuxt/a11y',
-    '@nuxt/image'
-  ],
+    modules: [
+        '@nuxt/eslint',
+        '@nuxt/ui',
+        '@nuxt/a11y',
+        '@nuxt/image'
+    ],
 
-  devtools: {
-    enabled: true
-  },
+    devtools: {
+        enabled: true
+    },
 
-  css: ['~/assets/css/main.css'],
+    css: ['~/assets/css/main.css'],
 
-  routeRules: {
-    '/': { prerender: true }
-  },
+    routeRules: {
+        '/': { prerender: true }
+    },
 
-  compatibilityDate: '2026-06-30',
+    compatibilityDate: '2026-06-30',
 
-  eslint: {
-    config: {
-      stylistic: {
-        commaDangle: 'never',
-        braceStyle: '1tbs'
-      }
+    nitro: {
+        runtimeConfig: {
+            app: {
+                key: '',
+                url: ''
+            },
+
+            debug: false,
+
+            db: {
+                name: '',
+                user: '',
+                pass: '',
+                host: '',
+                ssl: false,
+                port: 5432
+            },
+
+            redis: {
+                host: '',
+                port: 6379
+            },
+
+            storage: {
+                cache: {
+                    driver: 'redis'
+                }
+            }
+        }
+    },
+
+    eslint: {
+        config: {
+            stylistic: {
+                commaDangle: 'never',
+                braceStyle: '1tbs'
+            }
+        }
     }
-  }
-})
+});
