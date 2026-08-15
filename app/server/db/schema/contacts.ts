@@ -1,4 +1,10 @@
-import { integer, pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
+import { integer, pgEnum, pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
+
+// Declare enunms
+const ContactType = ['individual', 'company', 'contractor'] as const;
+
+// Declare database enum
+export const contactTypeEnum = pgEnum('contact_type', ContactType);
 
 export const contacts = pgTable('contacts', {
     id: uuid('id').defaultRandom().primaryKey(),
@@ -7,6 +13,7 @@ export const contacts = pgTable('contacts', {
     firstName: varchar('first_name', { length: 256 }),
     middleName: varchar('middle_name', { length: 256 }),
     lastName: varchar('last_name', { length: 256 }),
+    companyName: varchar('company_name', { length: 256 }),
 
     // Contact Information
     email: text('email'),
@@ -31,6 +38,7 @@ export const contacts = pgTable('contacts', {
 
     // Application Data
     notes: text('notes'),
+    type: contactTypeEnum('type').notNull(),
     parentId: uuid('parent_id'),
     version: integer('version').default(1).notNull(), // To avoid conflicts from other users updating the same contact
     createdAt: timestamp('created_at').defaultNow().notNull()
