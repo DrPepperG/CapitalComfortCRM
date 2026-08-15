@@ -9,14 +9,14 @@ export const properties = pgTable('properties', {
     addressLine1: text('address_line_1'),
     addressLine2: text('address_line_2'),
     city: varchar('city', { length: 100 }),
-    state: varchar('code', { length: 3 }).references(() => states.code),
+    state: varchar('state', { length: 3 }).default('NC').references(() => states.code),
     postalCode: varchar('postal_code', { length: 20 }),
     countryCode: varchar('country_code', { length: 2 }),
 
     billingAddressLine1: text('billing_address_line_1'),
     billingAddressLine2: text('billing_address_line_2'),
     billingCity: varchar('billing_city', { length: 100 }),
-    billingState: varchar('billing_state', { length: 100 }),
+    billingState: varchar('billing_state', { length: 3 }).default('NC').references(() => states.code),
     billingPostalCode: varchar('billing_postal_code', { length: 20 }),
     billingCountryCode: varchar('billing_country_code', { length: 2 }),
 

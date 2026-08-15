@@ -1,4 +1,5 @@
 import { integer, pgEnum, pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
+import { states } from './states';
 
 export const contacts = pgTable('contacts', {
     id: uuid('id').defaultRandom().primaryKey(),
@@ -23,7 +24,7 @@ export const contacts = pgTable('contacts', {
     billingAddressLine1: text('billing_address_line_1'),
     billingAddressLine2: text('billing_address_line_2'),
     billingCity: varchar('billing_city', { length: 100 }),
-    billingState: varchar('billing_state', { length: 100 }),
+    billingState: varchar('billing_state', { length: 3 }).default('NC').references(() => states.code),
     billingPostalCode: varchar('billing_postal_code', { length: 20 }),
     billingCountryCode: varchar('billing_country_code', { length: 2 }),
 
