@@ -1,11 +1,5 @@
 import { integer, pgEnum, pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
 
-// Declare enunms
-const ContactType = ['individual', 'company', 'contractor'] as const;
-
-// Declare database enum
-export const contactTypeEnum = pgEnum('contact_type', ContactType);
-
 export const contacts = pgTable('contacts', {
     id: uuid('id').defaultRandom().primaryKey(),
     displayName: text('display_name'),
@@ -34,7 +28,7 @@ export const contacts = pgTable('contacts', {
     billingCountryCode: varchar('billing_country_code', { length: 2 }),
 
     notes: text('notes'),
-    type: contactTypeEnum('type').notNull(),
+    type: varchar('type', { length: 255 }).notNull(),
     parentId: uuid('parent_id'),
     version: integer('version').default(1).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull()

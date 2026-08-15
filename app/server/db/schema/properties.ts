@@ -1,5 +1,6 @@
 import { integer, pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
 import { contacts } from './contacts';
+import { states } from './states';
 
 export const properties = pgTable('properties', {
     id: uuid('id').defaultRandom().primaryKey(),
@@ -8,7 +9,7 @@ export const properties = pgTable('properties', {
     addressLine1: text('address_line_1'),
     addressLine2: text('address_line_2'),
     city: varchar('city', { length: 100 }),
-    state: varchar('state', { length: 100 }),
+    state: varchar('code', { length: 3 }).references(() => states.code),
     postalCode: varchar('postal_code', { length: 20 }),
     countryCode: varchar('country_code', { length: 2 }),
 
