@@ -3,7 +3,7 @@ import { sql } from 'drizzle-orm';
 import { states } from './states';
 
 export const salesTax = pgTable('sales_tax', {
-    id: uuid('id').primaryKey().default(sql`uuid_generate_v7()`),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
 
     name: varchar('name', { length: 255 }).notNull(),
     state: varchar('code', { length: 3 }).references(() => states.code),

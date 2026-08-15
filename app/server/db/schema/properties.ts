@@ -4,7 +4,7 @@ import { contacts } from './contacts';
 import { states } from './states';
 
 export const properties = pgTable('properties', {
-    id: uuid('id').primaryKey().default(sql`uuid_generate_v7()`),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     primaryContact: uuid('primary_contact').references(() => contacts.id),
 
     addressLine1: text('address_line_1'),

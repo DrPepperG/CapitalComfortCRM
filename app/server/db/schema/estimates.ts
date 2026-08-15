@@ -3,7 +3,7 @@ import { sql } from 'drizzle-orm';
 import { properties } from './properties';
 
 export const estimates = pgTable('estimates', {
-    id: uuid('id').primaryKey().default(sql`uuid_generate_v7()`),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     propertyId: uuid('property_id').references(() => properties.id),
 
     expiresAt: timestamp('expires_at'),

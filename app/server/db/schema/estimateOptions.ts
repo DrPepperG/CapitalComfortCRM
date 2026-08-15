@@ -3,7 +3,7 @@ import { sql } from 'drizzle-orm';
 import { estimates } from './estimates';
 
 export const estimatesOptions = pgTable('estimate_options', {
-    id: uuid('id').primaryKey().default(sql`uuid_generate_v7()`),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     estimateId: uuid('estimate_id').references(() => estimates.id),
 
     priceCents: bigint('price_cents', { mode: 'number' }).default(0),

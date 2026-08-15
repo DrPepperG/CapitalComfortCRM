@@ -3,7 +3,7 @@ import { sql } from 'drizzle-orm';
 import { states } from './states';
 
 export const contacts = pgTable('contacts', {
-    id: uuid('id').primaryKey().default(sql`uuid_generate_v7()`),
+    id: uuid('id').primaryKey().default(sql`uuidv7()`),
     displayName: text('display_name'),
 
     firstName: varchar('first_name', { length: 256 }),
