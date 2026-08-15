@@ -8,7 +8,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "generate:migration": "npx drizzle-kit generate",
+    "dev:pushdb": "npx drizzle-kit push"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.123",

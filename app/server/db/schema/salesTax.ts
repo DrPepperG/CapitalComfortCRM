@@ -1,8 +1,9 @@
 import { bigint, boolean, integer, numeric, pgEnum, pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
 import { states } from './states';
 
 export const salesTax = pgTable('sales_tax', {
-    id: uuid('id').defaultRandom().primaryKey(),
+    id: uuid('id').primaryKey().default(sql`uuid_generate_v7()`),
 
     name: varchar('name', { length: 255 }).notNull(),
     state: varchar('code', { length: 3 }).references(() => states.code),
