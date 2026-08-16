@@ -2,10 +2,12 @@ import { integer, pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg
 import { sql } from 'drizzle-orm';
 import { contacts } from './contacts';
 import { states } from './states';
+import { salesTax } from './salesTax';
 
 export const properties = pgTable('properties', {
     id: uuid('id').primaryKey().default(sql`uuidv7()`),
     primaryContact: uuid('primary_contact').references(() => contacts.id),
+    displayName: text('display_name'),
 
     addressLine1: text('address_line_1'),
     addressLine2: text('address_line_2'),
@@ -14,10 +16,12 @@ export const properties = pgTable('properties', {
     postalCode: varchar('postal_code', { length: 20 }),
     countryCode: varchar('country_code', { length: 2 }),
 
+    salesTaxJurisdiction: uuid('salesTaxJurisdiction').notNull().references(() => salesTax.id),
+
     billingAddressLine1: text('billing_address_line_1'),
     billingAddressLine2: text('billing_address_line_2'),
     billingCity: varchar('billing_city', { length: 100 }),
-    billingState: varchar('billing_state', { length: 3 }).default('NC').references(() => states.code),
+    billingState: varchar('billing_state', { length: 3 }).references(() => states.code),
     billingPostalCode: varchar('billing_postal_code', { length: 20 }),
     billingCountryCode: varchar('billing_country_code', { length: 2 }),
 

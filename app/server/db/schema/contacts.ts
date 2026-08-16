@@ -4,7 +4,6 @@ import { states } from './states';
 
 export const contacts = pgTable('contacts', {
     id: uuid('id').primaryKey().default(sql`uuidv7()`),
-    displayName: text('display_name'),
 
     firstName: varchar('first_name', { length: 256 }),
     middleName: varchar('middle_name', { length: 256 }),
@@ -25,12 +24,12 @@ export const contacts = pgTable('contacts', {
     billingAddressLine1: text('billing_address_line_1'),
     billingAddressLine2: text('billing_address_line_2'),
     billingCity: varchar('billing_city', { length: 100 }),
-    billingState: varchar('billing_state', { length: 3 }).default('NC').references(() => states.code),
+    billingState: varchar('billing_state', { length: 3 }).references(() => states.code),
     billingPostalCode: varchar('billing_postal_code', { length: 20 }),
     billingCountryCode: varchar('billing_country_code', { length: 2 }),
 
     notes: text('notes'),
-    type: varchar('type', { length: 255 }).notNull(),
+    type: varchar('type', { length: 255 }).default('individual').notNull(),
     parentId: uuid('parent_id'),
     version: integer('version').default(1).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull()

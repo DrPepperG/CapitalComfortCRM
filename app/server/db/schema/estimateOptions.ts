@@ -1,4 +1,4 @@
-import { bigint, boolean, integer, pgEnum, pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
+import { bigint, boolean, check, integer, numeric, pgEnum, pgTable, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
 import { estimates } from './estimates';
 
@@ -8,8 +8,8 @@ export const estimatesOptions = pgTable('estimate_options', {
 
     priceCents: bigint('price_cents', { mode: 'number' }).default(0),
     currency: varchar('currency', { length: 3 }).default('USD').notNull(),
-    taxed: boolean('taxed'),
-    quantity: integer('quantity'),
+    taxed: boolean('taxed').default(true),
+    quantity: numeric('quantity', { precision: 3, scale: 2 }),
     description: text('description'),
 
     // This allows there to be additional optional options on an estimate.
@@ -17,4 +17,6 @@ export const estimatesOptions = pgTable('estimate_options', {
 
     createdAt: timestamp('created_at').defaultNow().notNull(),
     version: integer('version').default(1).notNull()
-});
+}, table => [
+    check('quantity_check', sql`${table.quantity} BETWEEN 0 AND 1`)
+]);
